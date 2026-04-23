@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { Component } from '@angular/core';
+import { ApiService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
-  styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
 })
-export class HomePage implements OnInit {
+export class HomePage {
 
-  constructor() { }
+  movies: any[] = [];
+
+  constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit() {
+    this.api.getMovies().subscribe((data: any) => {
+      this.movies = data.results;
+    });
   }
 
+  openDetails(movie: any) {
+    this.router.navigate(['/details'], { state: { movie } });
+  }
 }
