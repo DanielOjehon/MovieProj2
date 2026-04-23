@@ -1,25 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent,
+  IonList, IonItem, IonButton, IonLabel
+} from '@ionic/angular/standalone';
 import { ApiService } from '../../services/api.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
   standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonList, IonItem, IonButton, IonLabel
+  ]
 })
-export class HomePage {
-
+export class HomePage implements OnInit {
   movies: any[] = [];
 
-  constructor(private api: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.api.getMovies().subscribe((data: any) => {
+    this.apiService.getMovies().subscribe((data: any) => {
       this.movies = data.results;
     });
   }
 
   openDetails(movie: any) {
-    this.router.navigate(['/details'], { state: { movie } });
+    // navigation handled via routerLink or router
   }
 }

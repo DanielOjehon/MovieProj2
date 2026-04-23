@@ -5,15 +5,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <ion-button routerLink="/favourites">
-    Go to Favourites
-  </ion-button>
+  <ion-button routerLink="/favourites">Go to Favourites</ion-button>
 
   <ion-list>
-    <ion-item *ngFor="let movie of movies" (click)="openDetails(movie)">
-      {{ movie.title }}
-    </ion-item>
+    @for (movie of movies; track movie.id) {
+      <ion-item [routerLink]="['/details', movie.id]">
+        <ion-label>{{ movie.title }}</ion-label>
+      </ion-item>
+    }
   </ion-list>
-
 </ion-content>

@@ -1,13 +1,19 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>favourites</ion-title>
+    <ion-title>Favourites</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    @for (movie of favourites; track movie.id) {
+      <ion-item>
+        <ion-label>{{ movie.title }}</ion-label>
+      </ion-item>
+    } @empty {
+      <ion-item>
+        <ion-label>No favourites yet.</ion-label>
+      </ion-item>
+    }
+  </ion-list>
 </ion-content>
