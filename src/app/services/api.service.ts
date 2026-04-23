@@ -5,10 +5,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
-
   constructor(private http: HttpClient) {}
 
   getMovies() {
-    return this.http.get('https://api.themoviedb.org/3/movie/popular?api_key=YOUR_KEY');
+    return this.http.get<any>('assets/movies.json');
+  }
+
+  getMovieById(id: number) {
+    return this.http.get<any>('assets/movies.json');
   }
 }

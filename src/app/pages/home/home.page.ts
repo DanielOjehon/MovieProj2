@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
-  IonList, IonItem, IonButton, IonLabel
+  IonList, IonItem, IonLabel, IonThumbnail, IonImg
 } from '@ionic/angular/standalone';
 import { ApiService } from '../../services/api.service';
 
@@ -14,15 +14,14 @@ import { ApiService } from '../../services/api.service';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonList, IonItem, IonButton, IonLabel
+    IonList, IonItem, IonLabel, IonThumbnail, IonImg
   ]
 })
 export class HomePage implements OnInit {
   movies: any[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit() {
     this.apiService.getMovies().subscribe((data: any) => {
@@ -31,6 +30,6 @@ export class HomePage implements OnInit {
   }
 
   openDetails(movie: any) {
-    // navigation handled via routerLink or router
+    this.router.navigate(['/details', movie.id]);
   }
 }

@@ -1,16 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Movie App</ion-title>
+    <ion-title>Movies</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <ion-button routerLink="/favourites">Go to Favourites</ion-button>
-
+<ion-content>
   <ion-list>
     @for (movie of movies; track movie.id) {
-      <ion-item [routerLink]="['/details', movie.id]">
-        <ion-label>{{ movie.title }}</ion-label>
+      <ion-item (click)="openDetails(movie)" button="true">
+        <ion-thumbnail slot="start">
+          <ion-img [src]="movie.poster"></ion-img>
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ movie.title }}</h2>
+          <p>{{ movie.release_date }}</p>
+          <p>⭐ {{ movie.vote_average }}</p>
+        </ion-label>
       </ion-item>
     }
   </ion-list>

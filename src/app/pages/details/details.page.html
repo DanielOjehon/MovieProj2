@@ -1,12 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Details</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ movie?.title || 'Details' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-
-  <h2>{{ movie?.title }}</h2>
-  <p>{{ movie?.overview }}</p>
-
+  @if (movie) {
+    <ion-img [src]="movie.poster" style="border-radius: 10px; margin-bottom: 16px;"></ion-img>
+    <h2>{{ movie.title }}</h2>
+    <p>{{ movie.overview }}</p>
+    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <p><strong>Rating:</strong> ⭐ {{ movie.vote_average }}</p>
+  } @else {
+    <p>Movie not found.</p>
+  }
 </ion-content>

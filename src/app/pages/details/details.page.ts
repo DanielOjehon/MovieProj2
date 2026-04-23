@@ -1,20 +1,35 @@
-import { Component } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import {
+  IonHeader, IonToolbar, IonTitle, IonContent,
+  IonBackButton, IonButtons, IonImg
+} from '@ionic/angular/standalone';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
+  styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule] 
+  imports: [
+    CommonModule,
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonBackButton, IonButtons, IonImg
+  ]
 })
-export class DetailsPage {
+export class DetailsPage implements OnInit {
+  movie: any = null;
 
-  movie: any;
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) {}
 
-  constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
-    this.movie = nav?.extras.state?.['movie'];
+  ngOnInit() {
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.apiService.getMovies().subscribe((data: any) => {
+      this.movie = data.results.find((m: any) => m.id === id);
+    });
   }
 }
