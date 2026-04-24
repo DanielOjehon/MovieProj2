@@ -41,7 +41,7 @@ export class DetailsPage implements OnInit {
 
   async addToFavourites() {
     await this.storageService.addToFavourites(this.movie);
-    this.showToast('Added to Favourites ❤️');
+    this.showToast('Added to Favouritess ❤️');
   }
 
   async addToWatchLater() {
