@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>❤️ Favourites</ion-title>
+    <ion-title>🕐 Watch Later</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    @for (movie of favourites; track movie.id) {
+    @for (movie of watchLater; track movie.id) {
       <ion-item (click)="openDetails(movie)" button="true">
         <ion-thumbnail slot="start">
           <ion-img [src]="movie.poster_path"></ion-img>
@@ -22,7 +22,7 @@
       </ion-item>
     } @empty {
       <ion-item>
-        <ion-label>No favourites yet. Add some!</ion-label>
+        <ion-label>Nothing added yet. Browse movies to add some!</ion-label>
       </ion-item>
     }
   </ion-list>

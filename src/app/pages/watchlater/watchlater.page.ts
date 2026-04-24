@@ -11,9 +11,9 @@ import { trash } from 'ionicons/icons';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
-  selector: 'app-favourites',
-  templateUrl: './favourites.page.html',
-  styleUrls: ['./favourites.page.scss'],
+  selector: 'app-watchlater',
+  templateUrl: './watchlater.page.html',
+  styleUrls: ['./watchlater.page.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -22,20 +22,20 @@ import { StorageService } from '../../services/storage.service';
     IonImg, IonButton, IonIcon
   ]
 })
-export class FavouritesPage {
-  favourites: any[] = [];
+export class WatchLaterPage {
+  watchLater: any[] = [];
 
   constructor(private storageService: StorageService, private router: Router) {
     addIcons({ trash });
   }
 
   async ionViewWillEnter() {
-    this.favourites = await this.storageService.getFavourites();
+    this.watchLater = await this.storageService.getWatchLater();
   }
 
   async remove(movieId: string) {
-    await this.storageService.removeFromFavourites(movieId);
-    this.favourites = await this.storageService.getFavourites();
+    await this.storageService.removeFromWatchLater(movieId);
+    this.watchLater = await this.storageService.getWatchLater();
   }
 
   openDetails(movie: any) {

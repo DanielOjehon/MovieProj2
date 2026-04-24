@@ -5,13 +5,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ApiService {
+  private apiUrl = 'https://jsonfakery.com/movies/simple-paginate';
+
   constructor(private http: HttpClient) {}
 
   getMovies() {
-    return this.http.get<any>('assets/movies.json');
-  }
-
-  getMovieById(id: number) {
-    return this.http.get<any>('assets/movies.json');
+    return this.http.get<any>(this.apiUrl);
   }
 }

@@ -3,18 +3,32 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tabs/home"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ movie?.title || 'Details' }}</ion-title>
+    <ion-title>{{ movie?.original_title || 'Details' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   @if (movie) {
-    <ion-img [src]="movie.poster" style="border-radius: 10px; margin-bottom: 16px;"></ion-img>
-    <h2>{{ movie.title }}</h2>
+    <ion-img
+      [src]="movie.poster_path"
+      style="border-radius:12px; margin-bottom:16px;">
+    </ion-img>
+
+    <h2>{{ movie.original_title }}</h2>
     <p>{{ movie.overview }}</p>
     <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
     <p><strong>Rating:</strong> ⭐ {{ movie.vote_average }}</p>
+
+    <ion-button expand="block" color="danger" (click)="addToFavourites()">
+      <ion-icon name="heart" slot="start"></ion-icon>
+      Add to Favourites
+    </ion-button>
+
+    <ion-button expand="block" color="warning" (click)="addToWatchLater()">
+      <ion-icon name="time" slot="start"></ion-icon>
+      Watch Later
+    </ion-button>
   } @else {
-    <p>Movie not found.</p>
+    <p>Loading...</p>
   }
 </ion-content>

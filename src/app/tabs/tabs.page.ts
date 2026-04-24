@@ -4,7 +4,7 @@ import {
   IonIcon, IonLabel
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { home, heart } from 'ionicons/icons';
+import { home, heart, time } from 'ionicons/icons';
 
 @Component({
   selector: 'app-tabs',
@@ -14,6 +14,6 @@ import { home, heart } from 'ionicons/icons';
 })
 export class TabsPage {
   constructor() {
-    addIcons({ home, heart });
+    addIcons({ home, heart, time });
   }
 }

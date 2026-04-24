@@ -1,18 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Movies</ion-title>
+    <ion-title>🎬 Movies</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar
+      [(ngModel)]="searchTerm"
+      (ionInput)="filterMovies()"
+      placeholder="Search movies...">
+    </ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  @if (loading) {
+    <div style="display:flex; justify-content:center; margin-top:40px;">
+      <ion-spinner name="crescent"></ion-spinner>
+    </div>
+  }
+
   <ion-list>
-    @for (movie of movies; track movie.id) {
+    @for (movie of filteredMovies; track movie.id) {
       <ion-item (click)="openDetails(movie)" button="true">
         <ion-thumbnail slot="start">
-          <ion-img [src]="movie.poster"></ion-img>
+          <ion-img [src]="movie.poster_path"></ion-img>
         </ion-thumbnail>
         <ion-label>
-          <h2>{{ movie.title }}</h2>
+          <h2>{{ movie.original_title }}</h2>
           <p>{{ movie.release_date }}</p>
           <p>⭐ {{ movie.vote_average }}</p>
         </ion-label>
