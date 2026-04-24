@@ -39,6 +39,8 @@ export class WatchLaterPage {
   }
 
   openDetails(movie: any) {
-    this.router.navigate(['/details', movie.id]);
+    this.router.navigate(['/details', movie.id], {
+      state: { movie }
+    });
   }
 }

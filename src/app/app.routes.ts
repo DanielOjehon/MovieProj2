@@ -22,6 +22,11 @@ export const routes: Routes = [
           import('./pages/favourites/favourites.page').then(m => m.FavouritesPage)
       },
       {
+        path: 'watchlater',
+        loadComponent: () =>
+          import('./pages/watchlater/watchlater.page').then(m => m.WatchLaterPage)
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'

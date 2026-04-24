@@ -39,6 +39,8 @@ export class FavouritesPage {
   }
 
   openDetails(movie: any) {
-    this.router.navigate(['/details', movie.id]);
+    this.router.navigate(['/details', movie.id], {
+      state: { movie }
+    });
   }
 }

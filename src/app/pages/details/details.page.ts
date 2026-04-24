@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import {
   IonHeader, IonToolbar, IonTitle, IonContent,
   IonBackButton, IonButtons, IonImg, IonButton,
@@ -8,7 +8,6 @@ import {
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { heart, time } from 'ionicons/icons';
-import { ApiService } from '../../services/api.service';
 import { StorageService } from '../../services/storage.service';
 
 @Component({
@@ -26,8 +25,7 @@ export class DetailsPage implements OnInit {
   movie: any = null;
 
   constructor(
-    private route: ActivatedRoute,
-    private apiService: ApiService,
+    private router: Router,
     private storageService: StorageService,
     private toastCtrl: ToastController
   ) {
@@ -35,10 +33,10 @@ export class DetailsPage implements OnInit {
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.apiService.getMovies().subscribe((data: any) => {
-      this.movie = data.data.find((m: any) => m.id === id);
-    });
+    const nav = this.router.getCurrentNavigation();
+    if (nav?.extras?.state?.['movie']) {
+      this.movie = nav.extras.state['movie'];
+    }
   }
 
   async addToFavourites() {

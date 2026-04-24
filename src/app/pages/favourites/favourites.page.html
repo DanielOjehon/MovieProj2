@@ -15,14 +15,17 @@
           <h2>{{ movie.original_title }}</h2>
           <p>⭐ {{ movie.vote_average }}</p>
         </ion-label>
-        <ion-button slot="end" fill="clear" color="danger"
+        <ion-button
+          slot="end"
+          fill="clear"
+          color="danger"
           (click)="$event.stopPropagation(); remove(movie.id)">
           <ion-icon name="trash"></ion-icon>
         </ion-button>
       </ion-item>
     } @empty {
       <ion-item>
-        <ion-label>No favourites yet. Add some!</ion-label>
+        <ion-label>No favourites yet. Browse movies to add some!</ion-label>
       </ion-item>
     }
   </ion-list>

@@ -5,15 +5,8 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root'
 })
 export class StorageService {
-  private storageReady = false;
-
   constructor(private storage: Storage) {
-    this.init();
-  }
-
-  async init() {
-    await this.storage.create();
-    this.storageReady = true;
+    this.storage.create();
   }
 
   async addToFavourites(movie: any) {
