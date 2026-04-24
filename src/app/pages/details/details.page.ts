@@ -46,7 +46,7 @@ export class DetailsPage implements OnInit {
 
   async addToWatchLater() {
     await this.storageService.addToWatchLater(this.movie);
-    this.showToast('Added to Watch Later 🕐');
+    this.showToast('Added to Watch Later  🕐');
   }
 
   async showToast(message: string) {
